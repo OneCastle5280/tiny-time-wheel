@@ -213,21 +213,4 @@ public class TinyTimeWheel implements TimeWheel{
         this.stop = true;
         this.startThreadPool.shutdown();
     }
-
-    public static void main(String[] args) throws InterruptedException {
-        TinyTimeWheel tinyTimeWheel = new TinyTimeWheel(100, TimeUnit.MILLISECONDS,10);
-        for (int i = 0; i < 1000; i++) {
-            final int taskId = i;
-            long startTime = System.currentTimeMillis();
-            tinyTimeWheel.scheduledTask(new TinyTimeTask() {
-                @Override
-                public void run() {
-                    long cost = System.currentTimeMillis() - startTime;
-                    System.out.println("after 300ms task: " + taskId + ", cost: "+ cost + "ms");
-                }
-            }, 100, TimeUnit.MILLISECONDS);
-        }
-        Thread.sleep(30000);
-        tinyTimeWheel.stop();
-    }
 }
