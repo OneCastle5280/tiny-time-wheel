@@ -1,10 +1,13 @@
 package com.wang.timewheel;
 
+import lombok.Data;
+
+import java.util.TimerTask;
+
 /**
  * 实际执行任务
  *
  * @author wangjiabao
  */
-public interface TinyTimeTask extends Runnable {
-
+public abstract class TinyTimeTask implements Runnable {
 }

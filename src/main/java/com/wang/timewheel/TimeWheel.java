@@ -17,16 +17,15 @@ public interface TimeWheel {
     void scheduledTask(TinyTimeTask timeTask, long delay, TimeUnit timeUnit);
 
     /**
+     * 停止
+     */
+    void stop();
+
+    /**
      * 执行定时任务
      *
      * @param taskHolder
      */
     void runTask(TinyTimeTaskHolder taskHolder);
 
-    /**
-     * 将任务加入到时间轮中
-     *
-     * @param taskHolder
-     */
-    void addToWheel(TinyTimeTaskHolder taskHolder);
 }

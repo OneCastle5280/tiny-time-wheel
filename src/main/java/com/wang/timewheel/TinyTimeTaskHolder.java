@@ -18,7 +18,28 @@ public class TinyTimeTaskHolder {
     private TinyTimeTask timeTask;
 
     /**
-     * 任务实际执行时间
+     * 任务延迟时间
      */
     private Long executeTime;
+
+    /**
+     * 周期数
+     */
+    private Integer rounds;
+
+    /**
+     * 任务状态 {@link TaskStatus}
+     */
+    private Integer status;
+
+    public TinyTimeTaskHolder(TinyTimeTask timeTask, Long executeTime, Integer rounds) {
+        this.timeTask = timeTask;
+        this.executeTime = executeTime;
+        this.rounds = rounds;
+        this.status = TaskStatus.WAIT.getValue();
+    }
+
+    public boolean isExecuted() {
+        return TaskStatus.EXECUTED.getValue().equals(this.status);
+    }
 }
