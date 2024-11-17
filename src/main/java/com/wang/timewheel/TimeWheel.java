@@ -21,11 +21,4 @@ public interface TimeWheel {
      */
     void stop();
 
-    /**
-     * 执行定时任务
-     *
-     * @param taskHolder
-     */
-    void runTask(TinyTimeTaskHolder taskHolder);
-
 }
