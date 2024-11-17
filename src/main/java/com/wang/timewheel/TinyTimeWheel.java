@@ -85,13 +85,12 @@ public class TinyTimeWheel implements TimeWheel{
     }
 
     /**
-     * 初始化时间轮数量，让数量为 2 的倍数
+     * 初始化时间轮数量，让数量为 2 的幂数
      *
      * @param bucketNum
      * @return
      */
     private int normalizeWheelBucketNum(int bucketNum) {
-        // 这里参考java8 hashmap的算法，使推算的过程固定
         int n = bucketNum - 1;
         n |= n >>> 1;
         n |= n >>> 2;
@@ -150,6 +149,8 @@ public class TinyTimeWheel implements TimeWheel{
                 } catch (InterruptedException e) {
                     // 出现了中断异常
                 }
+            } else {
+                // 说明当前已经超过了设定的时间间隔，不再进行 sleep，直接执行
             }
         }
 
@@ -173,6 +174,7 @@ public class TinyTimeWheel implements TimeWheel{
                     // 计算轮数
                     int rounds = (taskTickCount - tick) / wheel.length;
                     taskHolder.setRounds(rounds);
+                    // 取模计算实际的时间槽位置
                     wheel[getBucketIndex(taskTickCount)].getTaskList().add(taskHolder);
                 }
             }
